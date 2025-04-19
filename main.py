@@ -10,16 +10,16 @@ def main():
     c2.draw(50,50, 100, 100)
     c3 = Cell(win)
     c3.has_bottom_wall = False
-    c3.draw(150, 150, 200, 200)
+    c3.draw(125, 125, 200, 200)
     c4 = Cell(win)
     c4.has_top_wall = False
-    c4.draw(210, 210, 260, 260)
+    c4.draw(225, 225, 250, 250)
     c5 = Cell(win)
     c5.has_left_wall = False
-    c5.draw(270, 270, 300, 300)
+    c5.draw(300, 300, 500, 500)
     c5 = Cell(win)
     c5.has_right_wall = False
-    c5.draw(310, 310, 360, 360)
+    c5.draw(510, 510, 600, 600)
     win.wait_for_close()
 
 
