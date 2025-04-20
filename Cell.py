@@ -14,6 +14,8 @@ class Cell:
         self._win = win
 
     def draw(self, x1, y1, x2, y2):
+        if self._win is None:
+            return
         self._x1 = x1
         self._y1 = y1
         self._x2 = x2
@@ -37,8 +39,8 @@ class Cell:
             )
     
     def _get_center(self, x1, y1, x2, y2) -> Point:
-        center_x = ((x2 - x1) / 2) + x1
-        center_y = ((y2 - y1) / 2) + y1
+        center_x = (abs(x2 - x1) // 2) + x1
+        center_y = (abs(y2 - y1) // 2) + y1
         return Point(center_x,center_y)
 
     def draw_move(self, to_cell, undo=False):
