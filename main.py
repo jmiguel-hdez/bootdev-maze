@@ -8,6 +8,7 @@ def main():
 
     m = Maze(10,10,10,10,20,20,win)
     m._create_cells()
+    m._break_entrance_and_exit()
 
     c5 = Cell(win)
     c5.has_left_wall = False

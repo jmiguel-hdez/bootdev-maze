@@ -20,23 +20,33 @@ class Cell:
         self._y1 = y1
         self._x2 = x2
         self._y2 = y2
+        color_top_wall = "black" if self.has_top_wall else "white"
+        color_bottom_wall = "black" if self.has_bottom_wall else "white"
+        color_left_wall = "black" if self.has_left_wall else "white"
+        color_right_wall = "black" if self.has_right_wall else "white"
 
-        if self.has_top_wall:
-            self._win.draw_line(
-                Line(Point(self._x1, self._y1), Point(self._x2, self._y1))
-            )
-        if self.has_bottom_wall:
-            self._win.draw_line(
-                Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
-            )
-        if self.has_left_wall:
-            self._win.draw_line(
-                Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
-            )
-        if self.has_right_wall:
-            self._win.draw_line(
-                Line(Point(self._x2, self._y1), Point(self._x2, self._y2))
-            )
+        #Draw top wall
+        self._win.draw_line(
+            Line(Point(self._x1, self._y1), Point(self._x2, self._y1)),
+            color_top_wall
+        )
+
+        #Draw bottom wall
+        self._win.draw_line(
+            Line(Point(self._x1, self._y2), Point(self._x2, self._y2)),
+            color_bottom_wall
+        )
+        #Draw left wall
+        self._win.draw_line(
+            Line(Point(self._x1, self._y1), Point(self._x1, self._y2)),
+            color_left_wall
+        )
+
+        #Draw right wall
+        self._win.draw_line(
+            Line(Point(self._x2, self._y1), Point(self._x2, self._y2)),
+            color_right_wall
+        )
     
     def _get_center(self, x1, y1, x2, y2) -> Point:
         center_x = (abs(x2 - x1) // 2) + x1
