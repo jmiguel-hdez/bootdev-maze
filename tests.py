@@ -20,10 +20,10 @@ class Tests(unittest.TestCase):
     def test_maze_create_cells_num_rows_cols_0(self):
         num_cols = 0
         num_rows = 0
-        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
-        self.assertEqual(
-            len(m1._cells),
-            0,
+        create_maze = lambda: Maze(0, 0, num_rows, num_cols, 10, 10)
+        self.assertRaises(
+            ValueError,
+            create_maze,
         )
 
     def test_maze_create_cells_coordinates(self):
@@ -65,13 +65,12 @@ class Tests(unittest.TestCase):
         num_cols = 5
         num_rows = 5
         m1 = Maze(20, 10, num_rows, num_cols, 10, 20)
-        m1._break_entrance_and_exit()
         self.assertEqual(
             m1._cells[0][0].has_top_wall,
             False,
         )
         self.assertEqual(
-            m1._cells[-1][-1].has_bottom_wall,
+            m1._cells[num_cols - 1][num_rows - 1].has_bottom_wall,
             False,
         )
 

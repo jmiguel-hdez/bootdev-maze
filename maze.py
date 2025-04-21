@@ -14,6 +14,9 @@ class Maze():
             cell_size_y: int,
             win: Window = None,
     ):
+        if num_rows < 1 or num_cols < 1:
+            raise ValueError("need at least one row and col for maze")
+        
         self._x1: int = x1
         self._y1: int = y1
         self._num_rows: int = num_rows
@@ -23,6 +26,7 @@ class Maze():
         self._win: Window = win
         self._cells: List[List[Cell]] = []
         self._create_cells()
+        self._break_entrance_and_exit()
     
     def _create_cells(self):
         for i in range(self._num_cols):
@@ -59,12 +63,13 @@ class Maze():
         time.sleep(0.05)
     
     def _break_entrance_and_exit(self):
-        exit_col = self._num_cols - 1
-        exit_row = self._num_rows - 1
         entry_col = 0
         entry_row = 0
         self._cells[entry_col][entry_row].has_top_wall = False
-        self._cells[exit_col][exit_row].has_bottom_wall = False
         self._draw_cell(entry_col,entry_row)
+
+        exit_col = self._num_cols - 1
+        exit_row = self._num_rows - 1
+        self._cells[exit_col][exit_row].has_bottom_wall = False
         self._draw_cell(exit_col,exit_row)
 
