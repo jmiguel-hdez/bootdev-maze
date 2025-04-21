@@ -1,23 +1,13 @@
-from Cell import Cell
+from cell import Cell
 from graphics import Window
 from graphics import Line,Point
+from maze import Maze
 
 def main():
     win = Window(800,600)
 
-    c1 = Cell(win)
-    c1.draw(2, 2, 20, 20)
-
-    c2 = Cell(win)
-    c2.draw(50,50, 100, 100)
-
-    c3 = Cell(win)
-    c3.has_bottom_wall = False
-    c3.draw(125, 125, 200, 200)
-
-    c4 = Cell(win)
-    c4.has_top_wall = False
-    c4.draw(225, 225, 250, 250)
+    m = Maze(10,10,10,10,20,20,win)
+    m._create_cells()
 
     c5 = Cell(win)
     c5.has_left_wall = False
@@ -27,7 +17,7 @@ def main():
     c6.has_right_wall = False
     c6.draw(510, 510, 600, 600)
 
-    c3.draw_move(c5,False)
+    c5.draw_move(c6,False)
 
     win.wait_for_close()
 
