@@ -21,21 +21,24 @@ class Maze():
         self._cell_size_x: int = cell_size_x
         self._cell_size_y: int = cell_size_y
         self._win: Window = win
+        self._cells: List[List[Cell]] = []
         self._create_cells()
     
     def _create_cells(self):
-        self._cells: List[List[Cell]] = []
-        for col in range(self._num_cols):
-            row = []
-            for r in range(self._num_rows):
-                row.append(Cell(self._win))
-            self._cells.append(row)
+        for i in range(self._num_cols):
+            col_cells = []
+            for j in range(self._num_rows):
+                col_cells.append(Cell(self._win))
+            self._cells.append(col_cells)
         
         for i in range(self._num_cols):
             for j in range(self._num_rows):
                 self._draw_cell(i,j)
     
     def _draw_cell(self, i: int, j: int):
+        if self._win is None:
+            return
+
         if i >= self._num_cols or j >= self._num_rows:
             raise IndexError(f"The provide indices(i:{i} j:{j}) are outside the maze area")
 
@@ -50,6 +53,8 @@ class Maze():
         self._animate()
     
     def _animate(self):
+        if self._win is None:
+            return
         self._win.redraw()
         time.sleep(0.05)
 
